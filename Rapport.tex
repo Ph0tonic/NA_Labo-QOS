@@ -86,18 +86,21 @@
 \section{Introduction}
  Le but de ce travail pratique est la découverte de techniques permettant de réaliser de la "Quality of Service" (QoS) sur un réseau simple. Ainsi que de tester ces dernières dans un environnement Netkit.
 
-\subsection{Matériel à disposition}
-\begin{enumerate}
-\item 1 Linux PC with NetKit
-\item Laboratoir netkit "qos"
-\end{enumerate}
+\subsection{Matériel et logiciel à disposition}
+\begin{itemize}
+	\item Un PC Linux avec NetKit
+	\item Laboratoir netkit "qos"
+\end{itemize}
 
 \section{Méthodologie}
 
-
 \subsection{Cas concret}
+<<<<<<< HEAD
 Grace au fichier lab.conf, nous pouvons déterminer la structure du réseau étant celle-ci:
 
+=======
+Grace au fichier lab.conf, nous pouvons déterminer la structure du réseau étant la suivante:
+>>>>>>> Temporary to test cite
 \begin{figure}[h]
   \centering
   \includegraphics{./Structure.png}
@@ -105,19 +108,32 @@ Grace au fichier lab.conf, nous pouvons déterminer la structure du réseau éta
   \label{fig:structure}
 \end{figure}
 
-Démarrage du laboratoir NetKit "qos":
-\begin{figure}
+Le démarrage du laboratoir NetKit "qos" nous permet d'accéder aux 4 périphériques précédement décrit:
+\begin{itemize}
+	\item PC
+	\item Routeur Entreprise
+	\item Routeur FAI
+	\item Serveur Internet
+\end{itemize}
+\begin{figure}[h]
   \includegraphics[width=\linewidth]{./captures/1-start.png}
   \caption{Démarrage du labo netkit "QoS"}
   \label{fig:qos}
 \end{figure}
 
-Figure \ref{fig:qos} représente le démarrage du laboratoir netkit "qos".
-
 \newpage
+Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.startup :
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{./captures/2-RouteurfaiStartup.png}
+  \caption{Démarrage du labo netkit "QoS"}
+  \label{fig:token-bucket}
+\end{figure}
+
+Ce fichier contient deux commandes qui influencent le traffic shapping
+
+3-TokenBucket.png
 
 \subsection{Traffic Shaping Simple}
-
 
 \subsection{Marquage du trafic classifié}
 
@@ -182,7 +198,7 @@ Si on priorise le traffic montant alors passera plus facilement outre la saturat
 
 - Il envoie tout ce qu'il reçoit et s'il y a un routeur qui est surchargé, il envoie le paquet à un autre routeur
 
-\subsection{2 : Avec quel outil peut-on évaluer le nombre de paquets reçus en désordre?}
+\subsection*{2 : Avec quel outil peut-on évaluer le nombre de paquets reçus en désordre?}
 
 - Wireshark avec des filtres
 
