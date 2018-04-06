@@ -65,7 +65,7 @@
 
 %bibliographie
 \usepackage{biblatex}
-\addbibresource{sample.bib}
+\addbibresource{biblio.bib}{}
 
 % Pour les listes
 \usepackage{enumitem}
@@ -103,7 +103,7 @@
 
 \subsection{1 : Expliquer en quelques mots le principe l'algorithme de régulation TCP}
 
-Certains routeur vont marquer les pacquets lorsqu'ils s'apprêtent à subir une congestion, ce système s'appelle l'ECN (Explicit Congestion Notification). Mais ce système mise sur le fait que les d'autres routeurs implément ce système. 
+Certains routeur vont marquer les pacquets lorsqu'ils s'apprêtent à subir une congestion, ce système s'appelle l'ECN (Explicit Congestion Notification). Mais ce système mise sur le fait que les d'autres routeurs implément ce système. \cite{cours}
 
 - Certains routeurs lorsqu'ils sont surchargé et s'ils disposent de la fonctionnalité NAGGLE marquent les pacquets par un flag afin de signaler aux clients que leurs messages passent par des zones surchargées.
 - Le client va ensuite automatiquement diminuer son débit et le remonter progressivement
@@ -160,14 +160,12 @@ Une des 3 possibilités:
 
 \subsection{4 : Conception d'un baquet}
 
-\begin{minted}{python}
-
-\end{minted}
+%\begin{minted}{python}
+	
+%\end{minted}
 
 
 \section{Conclusion}
-
-
 
 \printbibliography
 
