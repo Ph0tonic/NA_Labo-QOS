@@ -97,14 +97,13 @@
 
 \subsection{Cas concret}
 Grace au fichier lab.conf, nous pouvons déterminer la structure du réseau étant celle-ci:
-\begin{figure}
-  \includegraphics[width=\linewidth]{./Structure.png}
-  \caption{Démarrage du labo netkit "QoS"}
-  \label{fig:qos}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./Structure.png}
+  \caption{Structure du labo netkit}
+  \label{fig:structure}
 \end{figure}
-
-Figure \ref{fig:qos} représente le démarrage du laboratoir netkit "qos".
-
 
 Démarrage du laboratoir NetKit "qos":
 \begin{figure}
@@ -130,12 +129,13 @@ Figure \ref{fig:qos} représente le démarrage du laboratoir netkit "qos".
 
 \subsection*{1 : Expliquer en quelques mots le principe l'algorithme de régulation TCP}
 
-Certains routeur vont marquer les pacquets lorsqu'ils s'apprêtent à subir une congestion, ce système s'appelle l'ECN (Explicit Congestion Notification). Mais ce système mise sur le fait que les d'autres routeurs implément ce système. \cite{cours}
+Certains routeur vont marquer les pacquets lorsqu'ils s'apprêtent à subir une congestion, ce système s'appelle l'ECN (Explicit Congestion Notification). Mais ce système mise sur le fait que les d'autres routeurs implément ce système. \cite{cours}\\
 
-- Certains routeurs lorsqu'ils sont surchargé et s'ils disposent de la fonctionnalité NAGGLE marquent les pacquets par un flag afin de signaler aux clients que leurs messages passent par des zones surchargées.
-- Le client va ensuite automatiquement diminuer son débit et le remonter progressivement
+Les paquets marqués vont indiquer au client qu'il doit diminuer son débit.
 
 \subsection*{2 : Pourquoi un MTU plus faible peut améliorer la QoS?}
+
+Un MTU plus faible va baisser l'efficacité de la communication mais va améliorer le temps de réponse.
 
 - Problème de partage des trames
 - Guigge de phase très variable
@@ -143,21 +143,26 @@ Certains routeur vont marquer les pacquets lorsqu'ils s'apprêtent à subir une 
 
 \subsection*{3 : Que doit faire un opérateur lorsqu'il remarque des bits TOS et DIFFSERV ?}
 
-Une des 3 possibilités:
-- Jeter les pacquets
-- ignorer le flag TOS
-- supprimer le flag TOS
+Lorsqu'un opérateur remarque des bits TOS \cite{ToS} et DIFFSERV \cite{DiffServ} chez un client qui n'a pas de qualité de service dans sa prestation veut dire qu'il essaye de tricher.\\
 
-\subsection*{4 : Pourquoi un MTU plus faible peut améliorer la QoS?}
+L'opérateur peut alors faire 2 choses différentes selon sa politique envers ses clients qui essayent de tricher : 
 
-- Ralentir le débit montant de cette connexion
-- Supprimer des paquets de confirmation
+\begin{itemize}
+ 	\item Jeter tous les paquets
+ 	\item Ignorer ces bits et les supprimer de tous les paquets
+\end{itemize}
 
+\subsection*{4 : Comment diminuer la vitesse du sens descendant en modifiant celle du sens montant?}
 
-\subsection*{5 : Comment diminuer la vitesse du sens descendant en modifiant celle du sens montant?}
+Il y a deux possiblités. La première est de réduire la vitesse du débit montant de cette connexion, ce qui aura pour effet d'également de réduire la vitesse du sens descendant, car les paquêts metteront plus de temps à atteindre leur destination et leur reponse sera donc envboyer plus tard.\\
 
-- Limiter le nombre de ack par exemple en groupant les confirmations comme go back-n
-- Priorisation du traffic montant, confirmations
+La deuxième solution  est de supprimer des paquets de confirmations. L'émetteur attendra alors jusqu'au timeout et va ré-émettre le paquet par la suite. La fenêtre passera également moins rapidement aux paquets suivant puisque certains paquets n'auront pas été confirmés.
+
+\subsection*{5 : Le sens montant est saturé, comment assuer un bon débit descendant}
+
+Il serait possible de grouper les confirmations (ACK) comme le fait go back-n\cite{GoBackN} ou alors en faisant de la QoS et en priorisant le traffic montant et les confirmations.\\
+
+Si on priorise le traffic montant alors passera plus facilement outre la saturation et les confirmations du serveur seront en traffic descendant qui lui, n'est pas saturé.
 
 
 \subsection*{6 : Pourquoi gérer le traffic shaping seulement sur routeurentreprise produit de bon résultat mais n'est toujours pas suffisant?}
