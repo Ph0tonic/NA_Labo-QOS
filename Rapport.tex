@@ -183,14 +183,16 @@ Si on priorise le traffic montant alors passera plus facilement outre la saturat
 
 \subsection*{6 : Pourquoi gérer le traffic shaping seulement sur routeurentreprise produit de bon résultat mais n'est toujours pas suffisant?}
 
-- Routeur entreprise ne peux pas gérer le traffic plus général qui sera plus important sur le routeur FAI.
-- Routeur FAI aura un traffic plus important que le routeur entreprise
-- Parce que on peut déjà prioriser notre traffic en interne.
+Le première raison est que le routeur entreprise ne peut gérer que le traffic propre à son sous-réseau et non tous les clients connectés à routeur FAI. Le routeur FAI aura donc un traffic beaucoup plus important et la QoS sera donc plus utile sur cette partie du réseau.\\
 
-\subsection*{7 : Quelle queue est recommendé pour garantir un traitement équitables des données?}
+Mais le faire sur le routeur de l'entreprise permet déjà d'avoir une priorisation par rapport au traffic de l'entreprise et donc d'avoir un résultat qui peut-être satisfaisant si le routeur FAI ne subit très peu de congestion.
 
-- SFQ (stochastic fair queuing)
-- Non car il va jeter ce qui déborde
+\subsection*{7 : Quelle queue est recommendé pour garantir un traitement équitables des données? Est-ce que le Token Bucket répond à ses besoin ?}
+
+Une queue de type SFQ \cite{SFQ} est recommendé pour garantir un traitement plus équitables des données.\\
+
+Un baquet ne serait pas adapté car ce système ce contente de supprimer tous les paquets lorsqu'il est en surcharge \cite{Bucket}
+
 
 \section{Questions rapport}
 
