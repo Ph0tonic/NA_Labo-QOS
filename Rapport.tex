@@ -95,12 +95,7 @@
 \section{Méthodologie}
 
 \subsection{Cas concret}
-<<<<<<< HEAD
-Grace au fichier lab.conf, nous pouvons déterminer la structure du réseau étant celle-ci:
-
-=======
-Grace au fichier lab.conf, nous pouvons déterminer la structure du réseau étant la suivante:
->>>>>>> Temporary to test cite
+Grace au fichier lab.conf, nous pouvons déterminer la structure de réseau suivante:
 \begin{figure}[h]
   \centering
   \includegraphics{./Structure.png}
@@ -116,6 +111,7 @@ Le démarrage du laboratoir NetKit "qos" nous permet d'accéder aux 4 périphér
 	\item Serveur Internet
 \end{itemize}
 \begin{figure}[h]
+  \centering
   \includegraphics[width=\linewidth]{./captures/1-start.png}
   \caption{Démarrage du labo netkit "QoS"}
   \label{fig:qos}
@@ -124,14 +120,26 @@ Le démarrage du laboratoir NetKit "qos" nous permet d'accéder aux 4 périphér
 \newpage
 Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.startup :
 \begin{figure}[h]
+  \centering
   \includegraphics[width=\linewidth]{./captures/2-RouteurfaiStartup.png}
-  \caption{Démarrage du labo netkit "QoS"}
+  \caption{Fichier de configuration "routeurfai.startup"}
   \label{fig:token-bucket}
 \end{figure}
 
-Ce fichier contient deux commandes qui influencent le traffic shapping
+Ce fichier contient deux commandes qui influencent le traffic shapping, soient:
+\begin{itemize}
+\item \textit{tc qdist add dev eth0 root tbf rate 500kbit latency 80ms burst 1540}
+\item \textit{tc qdist add dev eth1 root tbf rate 5000kbit latency 80ms burst 15400}
+\end{itemize}
 
-3-TokenBucket.png
+Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.startup :
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/3-TokenBucket.png}
+  \caption{Configurations Token Bucket}
+  \label{fig:token-bucket}
+\end{figure}
+
 
 \subsection{Traffic Shaping Simple}
 
