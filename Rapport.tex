@@ -50,7 +50,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{Lucas \bsc{Bulloni} \&Bastien \bsc{Wermeille}}
-\lhead{Réseau et application}
+\lhead{Réseau et application.bib}
 \chead{Rapport Labo 2}
 \cfoot{\thepage}
 
@@ -64,8 +64,10 @@
 \usepackage{graphicx}
 
 %bibliographie
-\usepackage{biblatex}
-\addbibresource{biblio.bib}{}
+\usepackage{csquotes}
+%\usepackage{biblatex}
+\usepackage[backend=bibtex]{biblatex}
+%\addbibresource{biblio.bib}
 
 % Pour les listes
 \usepackage{enumitem}
@@ -225,6 +227,10 @@ Un baquet ne serait pas adapté car ce système ce contente de supprimer tous le
 
 \section{Conclusion}
 
-\printbibliography
+
+%\bibliography{biblio.bib}{}
+%\bibliographystyle{plain}
+
+\printbibliography 
 
 \end{document}
