@@ -209,9 +209,21 @@ On constate que les deux débits sont plus petits que ceux mesurés indépendemm
 Plus de traffic car TODO EXPLIQUER POURQUOI
 
 \subsubsection{Partie spécifique au rapport}
-Grace au script, nous avons généré le graph de latence:
+Grace au script, nous avons généré le graph de latence, une fois sans traffic:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/6-plot.png}
+  \caption{Configurations Token Bucket}
+  \label{fig:token-bucket}
+\end{figure}
 
-
+Puis la seconde fois avec du traffic full-duplex afin de diminuer l'effet aléatoire losrqu'il n'y a pas de traffic et que la variance varie beaucoup en très peu de temps:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/6-plot-fullduplex.png}
+  \caption{Configurations Token Bucket}
+  \label{fig:token-bucket}
+\end{figure}
 
 Nous avons également simulé des flux udp et effectué un ping:\\
 TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE UDP
