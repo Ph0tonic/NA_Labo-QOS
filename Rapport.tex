@@ -112,12 +112,13 @@ Le démarrage du laboratoir NetKit "qos" nous permet d'accéder aux 4 périphér
 	\item Routeur FAI
 	\item Serveur Internet
 \end{itemize}
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{./captures/1-start.png}
-  \caption{Démarrage du labo netkit "QoS"}
-  \label{fig:qos}
-\end{figure}
+
+%\begin{figure}[h]
+%  \centering
+%  \includegraphics[width=\linewidth]{./captures/1-start.png}
+%  \caption{Démarrage du labo netkit "QoS"}
+%  \label{fig:qos}
+%\end{figure}
 
 \newpage
 Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.startup :
@@ -134,7 +135,7 @@ Ce fichier contient deux commandes qui influencent le traffic shapping, soient:
 \item \textit{tc qdist add dev eth1 root tbf rate 5000kbit latency 80ms burst 15400}
 \end{itemize}
 
-Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.startup :
+Grace à la commande "tcqdisc list", nous obtenons: 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/3-TokenBucket.png}
@@ -142,8 +143,90 @@ Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.
   \label{fig:token-bucket}
 \end{figure}
 
+On peut y trouver deux paramètres, rate et latency, voici à quoi ils correspondent en comparaison avec le modèle du bacquet:
+\begin{itemize}
+\item rate -> débit standard
+\item latency -> taille du bacquet
+\end{itemize}
+
+La configuration actuelle nous permet d'accéder à serveurinternet:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/4-ping.png}
+  \caption{Ping serveurinternet}
+  \label{fig:token-bucket}
+\end{figure}
+\newpage
+
+L'étape suivante a été d'évaluer les performances:
+
+\begin{tabular}{|l|c|}
+  \hline
+   & Débit [Ko/s]\\
+  \hline
+  Débit montant & 49 \\
+  Débit Descendant & 580 \\
+  \hline
+\end{tabular}
+\\
+
+ainsi que les pings:
+
+\begin{tabular}{|l|c|}
+  \hline
+   & Temps [ms]\\
+  \hline
+  A vide & 1.19 \\
+  avec débit descendant & 75 \\
+  avec débit montant & 100 \\
+  \hline
+\end{tabular}
+\\
+
+TODO EVENTUELLEMENT AJOUTER CAPTURES + 
+
+\subsubsection{Questions sur cette partie}
+\textbf{a) Est-ce que les performances, chaque sens pris séparémment, correspond à celle prévue ?}\\
+Oui, 
+\\
+
+\textbf{b) si vous faites des transferts dans les deux sens, qu'observez-vous au niveau des débits ?}\\
+Bous avons effectué un test en mesurant le débit dans les deux directions en même temps:\\
+\begin{tabular}{|l|c|}
+  \hline
+   & Débit [Ko/s]\\
+  \hline
+  Débit montant & 45 \\
+  Débit Descendant & 516 \\
+  \hline
+\end{tabular}
+\\
+
+On constate que les deux débits sont plus petits que ceux mesurés indépendemment, celà s'explique par le fait que chaque message reçu dans un sens nécessite une confirmation qui va prendre du débit dans le sens opposé.
+\\
+
+\textbf{c) Qu'observez-vous si vous faites des ping simultanément à des transferts ?}\\
+Plus de traffic car TODO EXPLIQUER POURQUOI
+
+\subsubsection{Partie spécifique au rapport}
+Grace au script, nous avons généré le graph de latence:
+
+
+
+Nous avons également simulé des flux udp et effectué un ping:\\
+TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE UDP
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/10-udp.png}
+  \caption{ping durant traffic upd}
+  \label{fig:token-bucket}
+\end{figure}
+
 
 \subsection{Traffic Shaping Simple}
+
+
 
 \subsection{Marquage du trafic classifié}
 
@@ -162,10 +245,11 @@ Les paquets marqués vont indiquer au client qu'il doit diminuer son débit.
 \subsection*{2 : Pourquoi un MTU plus faible peut améliorer la QoS?}
 
 Un MTU plus faible va baisser l'efficacité de la communication mais va améliorer le temps de réponse.
-
-- Problème de partage des trames
-- Guigge de phase très variable
-- Baisse de l'efficacité mais augment le temsp de réponse
+\begin{enumerate}
+\item Problème de partage des trames
+\item Guigge de phase très variable
+\item Baisse de l'efficacité mais augmente le temps de réponse
+\end{enumerate}
 
 \subsection*{3 : Que doit faire un opérateur lorsqu'il remarque des bits TOS et DIFFSERV ?}
 
