@@ -226,7 +226,7 @@ Puis la seconde fois avec du traffic full-duplex afin de diminuer l'effet aléat
 \end{figure}
 
 Nous avons également simulé des flux udp et effectué un ping:\\
-TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE UDP
+TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE EN UDP
 
 \begin{figure}[h]
   \centering
@@ -237,14 +237,36 @@ TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE UDP
 
 
 \subsection{Traffic Shaping Simple}
+Nous allons limité le débit montant sur routeurentreprise en appliquant une queue TBF sur l'interface sortante grace à un très faible délai de stockage.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/11-limite.png}
+  \caption{Limitation traffic montant routeurentreprise}
+  \label{fig:token-bucket}
+\end{figure}
 
+En mesurant les délais, on a pu tester et montrer que les délais mesurés sont meilleurs en présence de traffic TCP montant, avec cette limitation:
+TODO Trouver image
 
+\textbf{Montrer dans quelle mesure le traffic d'information TCP est ralenti par cette limite et expliquer pourquoi}\\
+Le débit est plus petit. Lors de l'envoie de pacquets, beaucoup de ceux-ci vont déborder du bacquet, ce qui va nécessiter le réenvoie des pacquets jetté par le système. Ces pertes vont ralentir le système tout entier.
+
+Les statistiques de queue obtenues lors de notre test sont les suivantes:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/13-stat-queue.png}
+  \caption{Limitation traffic montant routeurentreprise}
+  \label{fig:token-bucket}
+\end{figure}
 
 \subsection{Marquage du trafic classifié}
+TODO
 
 \subsection{Classification et traffic shaping hiérarchique}
+TODO
 
 \subsection{Traffic descendant}
+TODO
 
 \section{Questions de base}
 
