@@ -1,0 +1,148 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{Bucket}{unpublished}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Cédric~Jadoul}{C.~J.}%
+     {Jonathan~Jeanpierre}{J.~J.}%
+     {}{}%
+     {Sébastien~Frippiat}{S.~F.}}%
+  }
+  \strng{namehash}{CJSFJJ1}
+  \strng{fullhash}{CJSFJJ1}
+  \field{sortinit}{C}
+  \field{addendum}{(accessed: 07.04.2018)}
+  \field{pages}{11}
+  \field{title}{Réseau, matières approfondies - TP Token Bucket}
+  \field{year}{2003-2004}
+\endentry
+
+\entry{SFQ}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Kuznetsov}{K.}%
+     {Alexey~N.}{A.~N.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KAN1}
+  \strng{fullhash}{KAN1}
+  \field{sortinit}{K}
+  \field{addendum}{(accessed: 07.04.2018)}
+  \field{title}{tc-sfq(8) - Linux man page}
+  \verb{url}
+  \verb https://linux.die.net/man/8/tc-sfq
+  \endverb
+\endentry
+
+\entry{GoBackN}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Schaefer}{S.}%
+     {Marc}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SM1}
+  \strng{fullhash}{SM1}
+  \field{sortinit}{S}
+  \field{addendum}{(accessed: 06.04.2018)}
+  \field{title}{Les protocoles}
+  \verb{url}
+  \verb https://ssl.horus.ch/~schaefer/bin/view/HEArc/ProtocolesPresentation?sl
+  \verb ideshow=on&skin=print
+  \endverb
+\endentry
+
+\entry{cours}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Schaefer}{S.}%
+     {Marc}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{network}
+  \strng{namehash}{SM1}
+  \strng{fullhash}{SM1}
+  \field{sortinit}{S}
+  \field{isbn}{978-2-940387-09-0}
+  \field{pages}{36}
+  \field{title}{Protocoles & Réseaux}
+  \field{year}{2017}
+\endentry
+
+\entry{HotPotato}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Techopedia.com}{T.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{T1}
+  \strng{fullhash}{T1}
+  \field{sortinit}{T}
+  \field{addendum}{(accessed: 10.05.2018)}
+  \field{title}{Hot Potato Routing}
+  \verb{url}
+  \verb https://www.techopedia.com/definition/1089/hot-potato-routing
+  \endverb
+\endentry
+
+\entry{DiffServ}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Wikipedia}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{addendum}{(accessed: 06.04.2018)}
+  \field{title}{Differentiated services}
+  \verb{url}
+  \verb https://en.wikipedia.org/wiki/Differentiated_services
+  \endverb
+\endentry
+
+\entry{ToS}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Wikipedia}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{addendum}{(accessed: 06.04.2018)}
+  \field{title}{Type of service}
+  \verb{url}
+  \verb https://en.wikipedia.org/wiki/Type_of_servicel
+  \endverb
+\endentry
+
+\lossort
+\endlossort
+
+\endinput
