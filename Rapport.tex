@@ -67,7 +67,7 @@
 \usepackage{csquotes}
 %\usepackage{biblatex}
 \usepackage[backend=bibtex]{biblatex}
-%\addbibresource{biblio.bib}
+\addbibresource{biblio.bib}
 
 % Pour les listes
 \usepackage{enumitem}
@@ -76,7 +76,26 @@
 % package pour liens hypertexte
 \usepackage{hyperref}
 
-%\usepackage{minted}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
 
 % Début du document
 \begin{document}
@@ -326,29 +345,104 @@ Un baquet ne serait pas adapté car ce système ce contente de supprimer tous le
 
 \subsection*{1 : Qu'est ce que le routage de la patate chaude et à quoi sert-il dans un réseau surchargé?}
 
-- Il envoie tout ce qu'il reçoit et s'il y a un routeur qui est surchargé, il envoie le paquet à un autre routeur
+C'est un système de routage où les paquets vont être envoyés sans être stocker en mémoire et sans vérifier par quel chemin ils seront le mieux acheminer. \cite{HotPotato}
 
 \subsection*{2 : Avec quel outil peut-on évaluer le nombre de paquets reçus en désordre?}
 
-- Wireshark avec des filtres
+Il est possible d'évaluer le nombre de paquets reçu en désordre avec Wireshark.
+
 
 \subsection*{3 : Proposer une répartition de débit entre classes plus logique dans un réseau réel}
 
-- Prioriser le tcp
+Si on priorise le TCP, les paquets devant crucialement être acheminer seront priorisé et les paquets UDP vont soit être perdu ou en retard. \\
+
+Mais vu que les protocoles utilisant UTP ne requiert pas un taux de réception de 100\%. 
 
 \subsection*{4 : Conception d'un baquet}
 
-%\begin{minted}{python}
+Tous les snippets de code sont également présents dans l'annexe 'TokenBucket.py'
 
-%\end{minted}
+\subsubsection{Classe rerpésentant un baquet}
 
+\paragraph{enqueue}
+
+Le baquet utilise une queue où l'on va définir une taille maximum de message en attente d'être envoyé. Lorsqu'on essaye d'ajouter un message à envoyer, le baquet va regarder le nombre de message en attente et si ce nombre est égal au nombre de message maximum, le message va être jeté.\\
+
+Autrement le message va être ajouté dans la queue en attendant d'être envoyé qu'il soit envoyé.
+
+\paragraph{dequeue}
+
+La fonction de dequeue va essayer de pop le futur message à envoyer et lorsque la queue est vide une erreur va être levée.
+
+\paragraph{printSize}
+
+La fonction printSize n'a pas de réel utilité si ce n'est que d'afficher des informations sur le l'état du baquet (message en attente / taille maximale) dans le code d'utilisation du baquet
+
+\paragraph{code}
+
+Voici le code du baquet : 
+
+\begin{lstlisting}
+class TokenBucket(object):
+	def __init__(self, burstLimit):
+		self.burstLimit = burstLimit
+		self.messages = deque([])
+	
+	def enqueue(self, message):
+		if len(self.messages) == self.burstLimit:
+			return None
+		else:
+			self.messages.append(message)
+		return message
+	
+	def dequeue(self):
+		try:
+			val = self.messages.pop()
+		except IndexError:
+			val = None
+		
+		return val
+	
+	def printSize(self):
+		print(str(len(self.messages)) + '/' + str(self.burstLimit) + ' messages')
+\end{lstlisting}
+
+\subsubsection{Code d'utilisation du baquet}
+
+Pour simuler l'utilisation d'un baquet, on va tirer un nombre aléatoire entre 0 et 1 et si ce nombre est plus grand que 0.2 on va mettre un message dans le baquet, sinon on va lire le message.\\
+
+Ensuite on va attendre 0.5 seconde afin qu'on puisse voir ce qu'il se passe.
+
+\begin{lstlisting}
+if __name__ == '__main__':
+	bucket = TokenBucket(10)
+	
+	while True:
+		qorDeQ = random.random()
+		
+		if qorDeQ > 0.2 :
+			val = bucket.enqueue(random.randint(0,100))
+			print('queue message')
+			
+			if val != None:
+				bucket.printSize()
+			else:
+				print('bucket is full')
+		
+		else :
+			print('dequeue message')
+			val = bucket.dequeue()
+		
+			if val == None:
+				print('Bucket is empty')
+			else:
+				bucket.printSize()
+	
+		time.sleep(0.5)
+\end{lstlisting}
 
 \section{Conclusion}
 
 
-%\bibliography{biblio.bib}{}
-%\bibliographystyle{plain}
-
-\printbibliography 
 
 \end{document}
