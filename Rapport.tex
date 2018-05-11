@@ -279,10 +279,93 @@ Les statistiques de queue obtenues lors de notre test sont les suivantes:
 \end{figure}
 
 \subsection{Marquage du trafic classifié}
-TODO
+
+Comme précisé dans la donnée, lorsqu'on crée deux flux TCP vers serveurinternet, les deux débits sont environ identiques. La suite de l'exercice consistait à différencier les deux flux en marquant des paquets avec le bit TOS en fonction du port de destination.\\
+
+Le bit TOS peut être marqué directement depuis les applications ou depuis le firewall. Pour cette partie nous l'avons fait avec le firewall.\\
+
+La commande pour indiqué au routeur de marquer les bits à destination du port 7002 avec le TOS est celle-ci :\\
+
+iptables -I OUTPUT -t mangle -p tcp --dport 7002 -j TOS --set-tos Minimize-Delay\\
+
+On peut ensuite voir que le trafic a bien été marqué sur la prise d'écran ci-dessous : 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./captures/tos-Flag.png}
+  \caption{flag TOS}
+  \label{fig:token-bucket}
+\end{figure}
+
 
 \subsection{Classification et traffic shaping hiérarchique}
-TODO
+
+Il est également possible de faire de la qualité de service en faisant une hiérarchie de priorisation pour avoir une plus grande liberté et complexité. Aussi appelé "Hierarchical Token Buffer" ou HTB. \\
+
+Ensuite l'exercice consistait à implément un HTB comme celui-ci : \\
+
+\begin{itemize}
+	\item 3/4 du débitdébit pour les paquets à desination du port TCP 7001
+	\item 1/4 composé de : 
+	\subitem 3/4 du débit restant pour tous le contenu autre que 7001 et 7002
+	\subitem 1/4 du débit restant pour les paquets à destination du port TCP 7002
+\end{itemize}
+
+Donc un arbre à 2 niveau qui représenté comme cela :
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{./arbre-htb.png}
+	\caption{Arbre HTB}
+	\label{fig:htb-tree}
+\end{figure}
+
+Les instructions pour créer cette HTB était données dans le cours à la page 56 \cite{doc-labo}. \\
+
+Les testes peuvent être observer sur les prises d'écran ci-dessous : 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{./captures/htb1.png}
+	\caption{Arbre HTB}
+	\label{fig:Débit port 7001}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{./captures/htb2.png}
+	\caption{Arbre HTB}
+	\label{fig:Débit port 7002}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{./captures/htb3.png}
+	\caption{Arbre HTB}
+	\label{fig:Débit port 7003}
+\end{figure}
+
+S'il on fait le calcule, on peut remarquer que le débit est assez proche du résultat attendu. \\
+
+Débit total : 55 K/s\\
+Port 7001 : Théorique - 41.125 K/s, pratique 41 K/s\\
+Port 7002 : Théorique - 3.4 K/s, pratique 6 K/s\\
+Port quelconque : Théorique 10.25 K/s, pratique 10 K/s
+
+\subsubsection{WonderShaper}
+
+Le script a pour 3 buts principaux : \\
+
+\begin{itemize}
+	\item améliorer au maximum possible la latence afin que des protocoles comme SSH ou Telnet ne soit pas perturber par le reste du traffic.
+	\item garder un débit correct en HTTP tout en ayant un traffic fort en débit montant et descendant
+	\item Limiter l'impacte du débit montant sur le débit descendant et l'inverse y compris
+\end{itemize}
+
+Et le script contient un certain nombre de règle pour le routeur afin de créer des classes et des Stochastic Fair Queue pour faire de la priorisation de service pour certains ports.
+
+
+
 
 \subsection{Traffic descendant}
 TODO quasiment rien
@@ -293,7 +376,7 @@ TODO quasiment rien
 
 Certains routeur vont marquer les pacquets lorsqu'ils s'apprêtent à subir une congestion, ce système s'appelle l'ECN (Explicit Congestion Notification). Mais ce système mise sur le fait que les d'autres routeurs implément ce système. \cite{cours}\\
 
-Les paquets marqués vont indiquer au client qu'il doit diminuer son débit.
+Les p	aquets marqués vont indiquer au client qu'il doit diminuer son débit.
 
 \subsection*{2 : Pourquoi un MTU plus faible peut améliorer la QoS?}
 

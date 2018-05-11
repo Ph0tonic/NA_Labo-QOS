@@ -1,0 +1,6 @@
+graph graphname {
+	Traffic -- 7001 [label="75%"];
+	Traffic -- "-" [label="25%"];
+	"-" -- 7002 [label="25%"];
+	"-" -- Reste [label="75%"]
+}

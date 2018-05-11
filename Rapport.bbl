@@ -51,6 +51,23 @@
   \endverb
 \endentry
 
+\entry{doc-labo}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Schaefer}{S.}%
+     {Marc}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{network}
+  \strng{namehash}{SM1}
+  \strng{fullhash}{SM1}
+  \field{sortinit}{S}
+  \field{pages}{56}
+  \field{title}{Laboratoire Réseaux et Applications 2018}
+  \field{year}{2018}
+\endentry
+
 \entry{GoBackN}{online}{}
   \name{author}{1}{}{%
     {{}%
