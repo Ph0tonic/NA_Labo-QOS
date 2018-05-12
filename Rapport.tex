@@ -232,17 +232,19 @@ Grace au script, nous avons généré le graph de latence, une fois sans traffic
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/6-plot.png}
-  \caption{Configurations Token Bucket}
+  \caption{Graph avec traffic à vide}
   \label{fig:token-bucket}
 \end{figure}
+\newpage
 
 Puis la seconde fois avec du traffic full-duplex afin de diminuer l'effet aléatoire losrqu'il n'y a pas de traffic et que la variance varie beaucoup en très peu de temps:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/6-plot-fullduplex.png}
-  \caption{Configurations Token Bucket}
+  \caption{Graph avec traffic full-duplex}
   \label{fig:token-bucket}
 \end{figure}
+\newpage
 
 Nous avons également simulé des flux udp et effectué un ping:\\
 TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE EN UDP
@@ -253,10 +255,11 @@ TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE EN UDP
   \caption{ping durant traffic upd}
   \label{fig:token-bucket}
 \end{figure}
+\newpage
 
 
 \subsection{Traffic Shaping Simple}
-Nous allons limité le débit montant sur routeurentreprise en appliquant une queue TBF sur l'interface sortante grace à un très faible délai de stockage.
+Nous allons limiter le débit montant sur routeurentreprise en appliquant une queue TBF sur l'interface sortante grace à un très faible délai de stockage.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/11-limite.png}
@@ -266,6 +269,7 @@ Nous allons limité le débit montant sur routeurentreprise en appliquant une qu
 
 En mesurant les délais, on a pu tester et montrer que les délais mesurés sont meilleurs en présence de traffic TCP montant, avec cette limitation:
 TODO Trouver image
+\\
 
 \textbf{Montrer dans quelle mesure le traffic d'information TCP est ralenti par cette limite et expliquer pourquoi}\\
 Le débit est plus petit. Lors de l'envoie de pacquets, beaucoup de ceux-ci vont déborder du bacquet, ce qui va nécessiter le réenvoie des pacquets jetté par le système. Ces pertes vont ralentir le système tout entier.
@@ -319,6 +323,7 @@ Donc un arbre à 2 niveau qui représenté comme cela :
 	\caption{Arbre HTB}
 	\label{fig:htb-tree}
 \end{figure}
+\newpage
 
 Les instructions pour créer cette HTB était données dans le cours à la page 56 \cite{doc-labo}. \\
 
@@ -330,20 +335,19 @@ Les testes peuvent être observer sur les prises d'écran ci-dessous :
 	\caption{Arbre HTB}
 	\label{fig:Débit port 7001}
 \end{figure}
-
 \begin{figure}[h]
 	\centering
 	\includegraphics{./captures/htb2.png}
 	\caption{Arbre HTB}
 	\label{fig:Débit port 7002}
 \end{figure}
-
 \begin{figure}[h]
 	\centering
 	\includegraphics{./captures/htb3.png}
 	\caption{Arbre HTB}
 	\label{fig:Débit port 7003}
 \end{figure}
+\newpage
 
 S'il on fait le calcule, on peut remarquer que le débit est assez proche du résultat attendu. \\
 
@@ -354,7 +358,7 @@ Port quelconque : Théorique 10.25 K/s, pratique 10 K/s
 
 \subsubsection{WonderShaper}
 
-Le script a pour 3 buts principaux : \\
+Le script a 3 buts principaux : \\
 
 \begin{itemize}
 	\item améliorer au maximum possible la latence afin que des protocoles comme SSH ou Telnet ne soit pas perturber par le reste du traffic.
@@ -363,9 +367,6 @@ Le script a pour 3 buts principaux : \\
 \end{itemize}
 
 Et le script contient un certain nombre de règle pour le routeur afin de créer des classes et des Stochastic Fair Queue pour faire de la priorisation de service pour certains ports.
-
-
-
 
 \subsection{Traffic descendant}
 TODO quasiment rien
@@ -525,7 +526,6 @@ if __name__ == '__main__':
 \end{lstlisting}
 
 \section{Conclusion}
-
-
+TODO
 
 \end{document}

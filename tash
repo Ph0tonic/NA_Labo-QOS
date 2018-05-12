@@ -1,0 +1,295 @@
+warning: LF will be replaced by CRLF in Rapport.tex.
+The file will have its original line endings in your working directory.
+[1mdiff --git a/Rapport-blx.bib b/Rapport-blx.bib[m
+[1mindex fa04f16..8ac46e3 100644[m
+[1m--- a/Rapport-blx.bib[m
+[1m+++ b/Rapport-blx.bib[m
+[36m@@ -1,5 +1,5 @@[m
+ @Comment{$ biblatex control file $}[m
+[31m-@Comment{$ biblatex version 2.6 $}[m
+[32m+[m[32m@Comment{$ biblatex version 2.9 $}[m
+ Do not modify this file![m
+ [m
+ This is an auxiliary file used by the 'biblatex' package.[m
+[36m@@ -7,5 +7,5 @@[m [mThis file may safely be deleted. It will be recreated as[m
+ required.[m
+ [m
+ @Control{biblatex-control,[m
+[31m-  options = {2.6:0:0:1:0:0:1:1:0:0:0:0:1:1:3:1:79:+},[m
+[32m+[m[32m  options = {2.9:0:0:1:0:1:1:0:0:0:0:1:3:1:79:+:nty},[m
+ }[m
+[1mdiff --git a/Rapport.bbl b/Rapport.bbl[m
+[1mdeleted file mode 100644[m
+[1mindex ba7fc28..0000000[m
+[1m--- a/Rapport.bbl[m
+[1m+++ /dev/null[m
+[36m@@ -1,148 +0,0 @@[m
+[31m-% $ biblatex auxiliary file $[m
+[31m-% $ biblatex version 2.6 $[m
+[31m-% Do not modify the above lines![m
+[31m-%[m
+[31m-% This is an auxiliary file used by the 'biblatex' package.[m
+[31m-% This file may safely be deleted. It will be recreated as[m
+[31m-% required.[m
+[31m-%[m
+[31m-\begingroup[m
+[31m-\makeatletter[m
+[31m-\@ifundefined{ver@biblatex.sty}[m
+[31m-  {\@latex@error[m
+[31m-     {Missing 'biblatex' package}[m
+[31m-     {The bibliography requires the 'biblatex' package.}[m
+[31m-      \aftergroup\endinput}[m
+[31m-  {}[m
+[31m-\endgroup[m
+[31m-[m
+[31m-\entry{Bucket}{unpublished}{}[m
+[31m-  \name{author}{1}{}{%[m
+[31m-    {{}%[m
+[31m-     {Cédric~Jadoul}{C.~J.}%[m
+[31m-     {Jonathan~Jeanpierre}{J.~J.}%[m
+[31m-     {}{}%[m
+[31m-     {Sébastien~Frippiat}{S.~F.}}%[m
+[31m-  }[m
+[31m-  \strng{namehash}{CJSFJJ1}[m
+[31m-  \strng{fullhash}{CJSFJJ1}[m
+[31m-  \field{sortinit}{C}[m
+[31m-  \field{addendum}{(accessed: 07.04.2018)}[m
+[31m-  \field{pages}{11}[m
+[31m-  \field{title}{Réseau, matières approfondies - TP Token Bucket}[m
+[31m-  \field{year}{2003-2004}[m
+[31m-\endentry[m
+[31m-[m
+[31m-\entry{SFQ}{online}{}[m
+[31m-  \name{author}{1}{}{%[m
+[31m-    {{}%[m
+[31m-     {Kuznetsov}{K.}%[m
+[31m-     {Alexey~N.}{A.~N.}%[m
+[31m-     {}{}%[m
+[31m-     {}{}}%[m
+[31m-  }[m
+[31m-  \strng{namehash}{KAN1}[m
+[31m-  \strng{fullhash}{KAN1}[m
+[31m-  \field{sortinit}{K}[m
+[31m-  \field{addendum}{(accessed: 07.04.2018)}[m
+[31m-  \field{title}{tc-sfq(8) - Linux man page}[m
+[31m-  \verb{url}[m
+[31m-  \verb https://linux.die.net/man/8/tc-sfq[m
+[31m-  \endverb[m
+[31m-\endentry[m
+[31m-[m
+[31m-\entry{GoBackN}{online}{}[m
+[31m-  \name{author}{1}{}{%[m
+[31m-    {{}%[m
+[31m-     {Schaefer}{S.}%[m
+[31m-     {Marc}{M.}%[m
+[31m-     {}{}%[m
+[31m-     {}{}}%[m
+[31m-  }[m
+[31m-  \strng{namehash}{SM1}[m
+[31m-  \strng{fullhash}{SM1}[m
+[31m-  \field{sortinit}{S}[m
+[31m-  \field{addendum}{(accessed: 06.04.2018)}[m
+[31m-  \field{title}{Les protocoles}[m
+[31m-  \verb{url}[m
+[31m-  \verb https://ssl.horus.ch/~schaefer/bin/view/HEArc/ProtocolesPresentation?sl[m
+[31m-  \verb ideshow=on&skin=print[m
+[31m-  \endverb[m
+[31m-\endentry[m
+[31m-[m
+[31m-\entry{cours}{book}{}[m
+[31m-  \name{author}{1}{}{%[m
+[31m-    {{}%[m
+[31m-     {Schaefer}{S.}%[m
+[31m-     {Marc}{M.}%[m
+[31m-     {}{}%[m
+[31m-     {}{}}%[m
+[31m-  }[m
+[31m-  \keyw{network}[m
+[31m-  \strng{namehash}{SM1}[m
+[31m-  \strng{fullhash}{SM1}[m
+[31m-  \field{sortinit}{S}[m
+[31m-  \field{isbn}{978-2-940387-09-0}[m
+[31m-  \field{pages}{36}[m
+[31m-  \field{title}{Protocoles & Réseaux}[m
+[31m-  \field{year}{2017}[m
+[31m-\endentry[m
+[31m-[m
+[31m-\entry{HotPotato}{online}{}[m
+[31m-  \name{author}{1}{}{%[m
+[31m-    {{}%[m
+[31m-     {Techopedia.com}{T.}%[m
+[31m-     {}{}%[m
+[31m-     {}{}%[m
+[31m-     {}{}}%[m
+[31m-  }[m
+[31m-  \strng{namehash}{T1}[m
+[31m-  \strng{fullhash}{T1}[m
+[31m-  \field{sortinit}{T}[m
+[31m-  \field{addendum}{(accessed: 10.05.2018)}[m
+[31m-  \field{title}{Hot Potato Routing}[m
+[31m-  \verb{url}[m
+[31m-  \verb https://www.techopedia.com/definition/1089/hot-potato-routing[m
+[31m-  \endverb[m
+[31m-\endentry[m
+[31m-[m
+[31m-\entry{DiffServ}{online}{}[m
+[31m-  \name{author}{1}{}{%[m
+[31m-    {{}%[m
+[31m-     {Wikipedia}{W.}%[m
+[31m-     {}{}%[m
+[31m-     {}{}%[m
+[31m-     {}{}}%[m
+[31m-  }[m
+[31m-  \strng{namehash}{W1}[m
+[31m-  \strng{fullhash}{W1}[m
+[31m-  \field{sortinit}{W}[m
+[31m-  \field{addendum}{(accessed: 06.04.2018)}[m
+[31m-  \field{title}{Differentiated services}[m
+[31m-  \verb{url}[m
+[31m-  \verb https://en.wikipedia.org/wiki/Differentiated_services[m
+[31m-  \endverb[m
+[31m-\endentry[m
+[31m-[m
+[31m-\entry{ToS}{online}{}[m
+[31m-  \name{author}{1}{}{%[m
+[31m-    {{}%[m
+[31m-     {Wikipedia}{W.}%[m
+[31m-     {}{}%[m
+[31m-     {}{}%[m
+[31m-     {}{}}%[m
+[31m-  }[m
+[31m-  \strng{namehash}{W1}[m
+[31m-  \strng{fullhash}{W1}[m
+[31m-  \field{sortinit}{W}[m
+[31m-  \field{addendum}{(accessed: 06.04.2018)}[m
+[31m-  \field{title}{Type of service}[m
+[31m-  \verb{url}[m
+[31m-  \verb https://en.wikipedia.org/wiki/Type_of_servicel[m
+[31m-  \endverb[m
+[31m-\endentry[m
+[31m-[m
+[31m-\lossort[m
+[31m-\endlossort[m
+[31m-[m
+[31m-\endinput[m
+[1mdiff --git a/Rapport.blg b/Rapport.blg[m
+[1mdeleted file mode 100644[m
+[1mindex 36752d7..0000000[m
+[1m--- a/Rapport.blg[m
+[1m+++ /dev/null[m
+[36m@@ -1,61 +0,0 @@[m
+[31m-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)[m
+[31m-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011[m
+[31m-The top-level auxiliary file: Rapport.aux[m
+[31m-The style file: biblatex.bst[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Database file #1: Rapport-blx.bib[m
+[31m-Database file #2: biblio.bib[m
+[31m-Biblatex version: 3.3[m
+[31m-Reallocated singl_function (elt_size=4) to 100 items from 50.[m
+[31m-Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.[m
+[31m-You've used 8 entries,[m
+[31m-            6047 wiz_defined-function locations,[m
+[31m-            1167 strings with 8829 characters,[m
+[31m-and the built_in function-call counts, 19061 in all, are:[m
+[31m-= -- 665[m
+[31m-> -- 626[m
+[31m-< -- 176[m
+[31m-+ -- 150[m
+[31m-- -- 208[m
+[31m-* -- 1121[m
+[31m-:= -- 1294[m
+[31m-add.period$ -- 0[m
+[31m-call.type$ -- 8[m
+[31m-change.case$ -- 58[m
+[31m-chr.to.int$ -- 34[m
+[31m-cite$ -- 14[m
+[31m-duplicate$ -- 2142[m
+[31m-empty$ -- 2160[m
+[31m-format.name$ -- 348[m
+[31m-if$ -- 4383[m
+[31m-int.to.chr$ -- 0[m
+[31m-int.to.str$ -- 18[m
+[31m-missing$ -- 0[m
+[31m-newline$ -- 148[m
+[31m-num.names$ -- 299[m
+[31m-pop$ -- 2293[m
+[31m-preamble$ -- 1[m
+[31m-purify$ -- 65[m
+[31m-quote$ -- 0[m
+[31m-skip$ -- 1190[m
+[31m-stack$ -- 0[m
+[31m-substring$ -- 227[m
+[31m-swap$ -- 630[m
+[31m-text.length$ -- 191[m
+[31m-text.prefix$ -- 7[m
+[31m-top$ -- 1[m
+[31m-type$ -- 292[m
+[31m-warning$ -- 0[m
+[31m-while$ -- 173[m
+[31m-width$ -- 0[m
+[31m-write$ -- 139[m
+[1mdiff --git a/Rapport.pyg b/Rapport.pyg[m
+[1mdeleted file mode 100644[m
+[1mindex 31bd87c..0000000[m
+[1m--- a/Rapport.pyg[m
+[1m+++ /dev/null[m
+[36m@@ -1,25 +0,0 @@[m
+[31m-class TokenBucket(object):[m
+[31m-[m
+[31m-def __init__(self, burstLimit):[m
+[31m-self.burstLimit = burstLimit[m
+[31m-self.messages = deque([])[m
+[31m-[m
+[31m-def enqueue(self, message):[m
+[31m-if len(self.messages) == self.burstLimit:[m
+[31m-return None[m
+[31m-else:[m
+[31m-self.messages.append(message)[m
+[31m-return message[m
+[31m-[m
+[31m-def dequeue(self):[m
+[31m-try:[m
+[31m-val = self.messages.pop()[m
+[31m-except IndexError:[m
+[31m-val = None[m
+[31m-[m
+[31m-return val[m
+[31m-[m
+[31m-def printSize(self):[m
+[31m-print(str(len(self.messages)) + '/' + str(self.burstLimit) + ' messages')[m
+[31m-[m
+[31m-[m
+[1mdiff --git a/Rapport.tex b/Rapport.tex[m
+[1mindex 149ae1d..f387b03 100644[m
+[1m--- a/Rapport.tex[m
+[1m+++ b/Rapport.tex[m
+[36m@@ -11,8 +11,9 @@[m
+ % Taille des marges[m
+ \usepackage[top=2.5cm, bottom=2cm, left=2.5cm, right=1.5cm]{geometry}[m
+ [m
+[32m+[m
+ % Pour l'espace entre les lignes[m
+[31m-\usepackage{setspace}[m
+[32m+[m[32m%\usepackage{setspace}[m
+ % Utilisation:[m
+ % Moyen:[m
+ % \begin{onehalfspace}[m
+[36m@@ -140,6 +141,7 @@[m [mLe démarrage du laboratoir NetKit "qos" nous permet d'accéder aux 4 périphér[m
+ %\end{figure}[m
+ [m
+ \newpage[m
+[32m+[m
+ Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.startup :[m
+ \begin{figure}[h][m
+   \centering[m

@@ -1,6 +1,10 @@
 *.out
 *.aux
 *.log
+*.bbl
+*.blg
+*.log
+*.pyg
 *.synctex.gz
 *.pdf
 *.bcf
