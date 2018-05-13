@@ -65,9 +65,7 @@
 
 %bibliographie
 \usepackage{csquotes}
-%\usepackage{biblatex}
-\usepackage[backend=bibtex]{biblatex}
-\addbibresource{biblio.bib}
+
 
 % Pour les listes
 \usepackage{enumitem}
@@ -96,6 +94,13 @@
 	breakatwhitespace=true,
 	tabsize=3
 }
+
+\usepackage[
+backend=bibtex
+% backend=biber % <-- biber is a modern replacement for BibTeX designed for use (only) with biblatex
+]
+{biblatex}
+\addbibresource{biblio.bib}
 
 % Début du document
 \begin{document}
@@ -547,6 +552,9 @@ if __name__ == '__main__':
 
 \section{Conclusion}
 
-Ce laboratoire c'est déroulé sans problème, toutes les parties à prouver ont été prouvé. Nous avons pu mettre en place et tester plusieurs solutions de qualité de serveur au sein d'un réseau informatique. Comme le flag TOS et ou encore les tables hiérarchique HTB. Toutes les questions ont pu être répondu et un code simple en python illustre le fonction d'un baquet.
+Ce laboratoire c'est déroulé sans problème, toutes les parties à prouver ont été réalisé et prouvé. Nous avons pu mettre en place et tester plusieurs solutions de qualité de serveur au sein d'un réseau informatique. Comme le flag TOS et ou encore les tables hiérarchique HTB. Toutes les questions ont pu être répondu et un code simple en python illustre le fonction d'un baquet.
+
+\printbibliography
+
 
 \end{document}
