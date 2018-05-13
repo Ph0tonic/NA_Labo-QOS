@@ -107,15 +107,13 @@ backend=bibtex
 
 \maketitle
 
- 
-
 \section{Introduction}
 Le but de ce travail pratique est la découverte de techniques permettant de réaliser de la "Quality of Service" (QoS) sur un réseau simple. Ainsi que de tester ces dernières dans un environnement Netkit.
 
 \subsection{Matériel et logiciel à disposition}
 \begin{itemize}
 	\item Un PC Linux avec NetKit
-	\item Laboratoir netkit "qos"
+	\item Laboratoire netkit "qos"
 \end{itemize}
 
 \section{Méthodologie}
@@ -337,7 +335,7 @@ Il est également possible de faire de la qualité de service en faisant une hi�
 Ensuite l'exercice consistait à implémenter un HTB comme celui-ci : \\
 
 \begin{itemize}
-	\item 3/4 du débitdébit pour les paquets à destination du port TCP 7001
+	\item 3/4 du débit pour les paquets à destination du port TCP 7001
 	\item 1/4 composé de : 
 	\subitem 3/4 du débit restant pour tous le contenu autre que 7001 et 7002
 	\subitem 1/4 du débit restant pour les paquets à destination du port TCP 7002
@@ -410,14 +408,14 @@ Un MTU plus faible va baisser l'efficacité de la communication, mais va amélio
 \begin{enumerate}
 \item Problème de partage des trames
 \item Guigge de phase très variable
-\item Baisse de l'efficacité mais augmente le temps de réponse
+\item Baisse de l'efficacité mais diminue le temps de réponse
 \end{enumerate}
 
-\subsection*{3 : Que doit faire un opérateur lorsqu'il remarque des bits TOS et DIFFSERV ?}
+\subsection*{3 : Que doit faire un opérateur lorsqu'il remarque des bits TOS et DIFFSERV activé avec un un débit ne correspondant pas au SLA ?}
 
 Lorsqu'un opérateur remarque des bits TOS \cite{ToS} et DIFFSERV \cite{DiffServ} chez un client qui n'a pas de qualité de service dans sa prestation veut dire qu'il essaye de tricher.\\
 
-L'opérateur peut alors faire 2 choses différentes selon sa politique envers ses clients qui essayent de tricher : 
+L'opérateur peut alors faire 2 choses différentes selon sa politique envers les clients qui essayent de tricher : 
 
 \begin{itemize}
  	\item Jeter tous les paquets
@@ -426,28 +424,30 @@ L'opérateur peut alors faire 2 choses différentes selon sa politique envers se
 
 \subsection*{4 : Comment diminuer la vitesse du sens descendant en modifiant celle du sens montant?}
 
-Il y a deux possibilités. La première est de réduire la vitesse du débit montant de cette connexion, ce qui aura pour effet d'également de réduire la vitesse du sens descendant, car les paquets mettront plus de temps à atteindre leur destination et leur réponse sera donc envoyé plus tard.\\
+Il y a deux possibilités. La première est de réduire la vitesse du débit montant de cette connexion, ce qui aura pour effet d'également réduire la vitesse du sens descendant, car les paquets de confirmation mettront plus de temps à atteindre leur destination et ainsi les messages suivants seront retardés.\\
 
-La deuxième solution est de supprimer des paquets de confirmations. L'émetteur attendra alors jusqu'au timeout et va réémettre le paquet par la suite. La fenêtre passera également moins rapidement aux paquets suivants puisque certains paquets n'auront pas été confirmés.
+La deuxième solution est de supprimer des paquets de confirmations. L'émetteur attendra alors jusqu'au timeout et devra réémettre les paquets dans la confirmation n'aq pas étée reçue. La fenêtre passera également moins rapidement aux paquets suivants puisque certains paquets n'auront pas été confirmés ce qui va ralentir le débit descendant.
 
 \subsection*{5 : Le sens montant est saturé, comment assurer un bon débit descendant}
 
-Il serait possible de grouper les confirmations (ACK) comme le fait go back-n\cite{GoBackN} ou alors en faisant de la QoS et en priorisant le traffic montant et les confirmations.\\
+Il serait possible de grouper les confirmations (ACK) comme le fait go back-n\cite{GoBackN} ou alors, en faisant de la QoS et en priorisant les messages de confirmation (ACK).\\
 
-Si on priorise le traffic montant, alors celui-ci passera plus facilement outre la saturation et les confirmations du serveur seront en traffic descendant qui lui, n'est pas saturé.
+Si on priorise ces messages, alors ceux-ci passeront plus facilement outre la saturation et le débit descendant souffrira moins de la saturatuion du sens montant.
 
 
 \subsection*{6 : Pourquoi gérer le traffic shaping seulement sur routeurentreprise produit de bon résultat mais n'est toujours pas suffisant?}
 
-Le première raison est que le routeur entreprise ne peut gérer que le traffic propre à son sous-réseau et non tous les clients connectés à routeur FAI. Le routeur FAI aura donc un traffic beaucoup plus important et la QoS sera donc plus utile sur cette partie du réseau.\\
+Le première raison est que le routeur entreprise ne peut gérer que le trafic propre à son sous-réseau et non le trafic de tous les clients connectés à routeur FAI. Le routeur FAI aura donc un traffic beaucoup plus important et la QoS sera donc plus utile sur cette partie du réseau.\\
 
-Mais le faire sur le routeur de l'entreprise permet déjà d'avoir une priorisation par rapport au traffic de l'entreprise et donc d'avoir un résultat qui peut-être satisfaisant si le routeur FAI ne subit très peu de congestion.
+Mais le faire sur le routeur de l'entreprise permet déjà d'avoir une priorisation par rapport au traffic de l'entreprise et donc d'avoir un résultat qui peut-être satisfaisant si le routeur FAI subit très peu de congestion.
 
-\subsection*{7 : Quelle queue est recommandée pour garantir un traitement équitable des données? Est-ce que le Token Bucket répond à ses besoin ?}
+Dans le cas ou le routeur FAI est saturé alors la priorisation du côté de routeurentreprise ne sera pas suffisante car une autre sélection sera effectuée du côté du routeurFAI.
+
+\subsection*{7 : Quelle queue est recommandée pour garantir un traitement équitable des données? Est-ce que le Token Bucket répond à ces besoin ?}
 
 Une queue de type SFQ \cite{SFQ} est recommendée pour garantir un traitement plus équitable des données.\\
 
-Un baquet ne serait pas adapté, car ce système se contente de supprimer tous les paquets lorsqu'il est en surcharge \cite{Bucket}
+Un baquet ne serait pas adapté, car ce système se contente de supprimer les paquets qu'il reçoit lorsqu'il est en surcharge \cite{Bucket}
 
 
 \section{Questions rapport}
