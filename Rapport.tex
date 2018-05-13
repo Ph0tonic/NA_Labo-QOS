@@ -156,7 +156,7 @@ Ce fichier contient deux commandes qui mettent en place un tocken bucket sur cha
 \item \textit{tc qdist add dev eth1 root tbf rate 5000kbit latency 80ms burst 15400}
 \end{itemize}
 
-Grace à la commande "tcqdisc list", nous pouvons constater que ces deux commandes ont bien fonctionnées:
+Grâce à la commande "tcqdisc list", nous pouvons constater que ces deux commandes ont bien fonctionné:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/3-TokenBucket.png}
@@ -164,10 +164,10 @@ Grace à la commande "tcqdisc list", nous pouvons constater que ces deux command
   \label{fig:token-bucket}
 \end{figure}
 
-Le tocken bucket prend notemment deux paramètres principaux, rate et latency, voici à quoi ils correspondent en comparaison avec le modèle du baquet:
+Le tocken bucket prend notamment deux paramètres principaux, rate et latency, voici à quoi ils correspondent en comparaison avec le modèle du baquet:
 \begin{itemize}
 \item rate -> débit standard ou constant, paramètre de la vitesse
-\item latency -> taille du baquet, nombre d’octets qui peu être mis en file d’attente en attendant la disponibilité de jetons
+\item latency -> taille du baquet, nombre d’octets qui peut être mis en file d’attente en attendant la disponibilité de jetons
 \end{itemize}
 
 La configuration actuelle nous permet d'accéder à serveurinternet:
@@ -231,8 +231,8 @@ ainsi que les pings:
 
 
 \subsubsection{Questions sur cette partie}
-\textbf{a) Est-ce que les performances, chaque sens pris séparément, correspond à celle prévue ?}\\
-Oui, ce n'est pas exactement les mêmes valeures mais c'est très proches du résultat attendu.
+\textbf{a) Est-ce que les performances, chaque sens pris séparément, correspondent à celle prévue ?}\\
+Oui, ce n'est pas exactement les mêmes valeurs, mais c'est très proche du résultat attendu.
 \\
 
 \textbf{b) si vous faites des transferts dans les deux sens, qu'observez-vous au niveau des débits ?}\\
@@ -251,10 +251,10 @@ On constate que les deux débits sont plus petits que ceux mesurés indépendamm
 \\
 
 \textbf{c) Qu'observez-vous si vous faites des ping simultanément à des transferts ?}\\
-La vitesse des transferts diminue car les pings prennent du débit au transfert. Les pings ont un délais plus long à cause de l'augmentation de trafic.
+La vitesse des transferts diminue, car les pings prennent du débit au transfert. Les pings ont un délai plus long à cause de l'augmentation de trafic.
 
 \subsubsection{Partie spécifique au rapport}
-Grace au script, nous avons généré le graph de latence, une fois sans traffic:
+Grâce au script, nous avons généré le graph de latence, une fois sans traffic:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/6-plot.png}
@@ -295,7 +295,7 @@ En mesurant les délais, on a pu tester et montrer que les délais mesurés sont
 \\
 
 \textbf{Montrer dans quelle mesure le traffic d'information TCP est ralenti par cette limite et expliquer pourquoi}\\
-Le débit est plus petit. Lors de l'envoie de paquets, beaucoup de ceux-ci vont déborder du baquet, ce qui va nécessiter le réenvoie des paquets jetés par le système. Ces pertes vont ralentir le système tout entier.
+Le débit est plus petit. Lors de l'envoi de paquets, beaucoup de ceux-ci vont déborder du baquet, ce qui va nécessiter le réenvoie des paquets jetés par le système. Ces pertes vont ralentir le système tout entier.
 
 Les statistiques de queue obtenues lors de notre test sont les suivantes:
 \begin{figure}[h]
@@ -311,7 +311,7 @@ Comme précisé dans la donnée, lorsqu'on crée deux flux TCP vers serveurinter
 
 Le bit TOS peut être marqué directement depuis les applications ou depuis le firewall. Pour cette partie nous l'avons fait avec le firewall.\\
 
-La commande pour indiqurt au routeur de marquer les bits à destination du port 7002 avec le TOS est celle-ci :\\
+La commande pour indiquer au routeur de marquer les bits à destination du port 7002 avec le TOS est celle-ci :\\
 
 iptables -I OUTPUT -t mangle -p tcp --dport 7002 -j TOS --set-tos Minimize-Delay\\
 
@@ -334,7 +334,7 @@ Ensuite l'exercice consistait à implémenter un HTB comme celui-ci : \\
 \begin{itemize}
 	\item 3/4 du débit pour les paquets à destination du port TCP 7001
 	\item 1/4 composé de : 
-	\subitem 3/4 du débit restant pour tous le contenu autre que 7001 et 7002
+	\subitem 3/4 du débit restant pour tout le contenu autre que 7001 et 7002
 	\subitem 1/4 du débit restant pour les paquets à destination du port TCP 7002
 \end{itemize}
 
@@ -405,10 +405,10 @@ Un MTU plus faible va baisser l'efficacité de la communication, mais va amélio
 \begin{enumerate}
 \item Problème de partage des trames
 \item Guigge de phase très variable
-\item Baisse de l'efficacité mais diminue le temps de réponse
+\item Baisse de l'efficacité, mais diminue le temps de réponse
 \end{enumerate}
 
-\subsection*{3 : Que doit faire un opérateur lorsqu'il remarque des bits TOS et DIFFSERV activé avec un un débit ne correspondant pas au SLA ?}
+\subsection*{3 : Que doit faire un opérateur lorsqu'il remarque des bits TOS et DIFFSERV activés avec un débit ne correspondant pas au SLA ?}
 
 Lorsqu'un opérateur remarque des bits TOS \cite{ToS} et DIFFSERV \cite{DiffServ} chez un client qui n'a pas de qualité de service dans sa prestation veut dire qu'il essaye de tricher.\\
 
@@ -423,7 +423,7 @@ L'opérateur peut alors faire 2 choses différentes selon sa politique envers le
 
 Il y a deux possibilités. La première est de réduire la vitesse du débit montant de cette connexion, ce qui aura pour effet d'également réduire la vitesse du sens descendant, car les paquets de confirmation mettront plus de temps à atteindre leur destination et ainsi les messages suivants seront retardés.\\
 
-La deuxième solution est de supprimer des paquets de confirmations. L'émetteur attendra alors jusqu'au timeout et devra réémettre les paquets dans la confirmation n'aq pas étée reçue. La fenêtre passera également moins rapidement aux paquets suivants puisque certains paquets n'auront pas été confirmés ce qui va ralentir le débit descendant.
+La deuxième solution est de supprimer des paquets de confirmations. L'émetteur attendra alors jusqu'au timeout et devra réémettre les paquets dans la confirmation n'au pas été reçue. La fenêtre passera également moins rapidement aux paquets suivants puisque certains paquets n'auront pas été confirmés ce qui va ralentir le débit descendant.
 
 \subsection*{5 : Le sens montant est saturé, comment assurer un bon débit descendant}
 
@@ -432,13 +432,13 @@ Il serait possible de grouper les confirmations (ACK) comme le fait go back-n\ci
 Si on priorise ces messages, alors ceux-ci passeront plus facilement outre la saturation et le débit descendant souffrira moins de la saturatuion du sens montant.
 
 
-\subsection*{6 : Pourquoi gérer le traffic shaping seulement sur routeurentreprise produit de bon résultat mais n'est toujours pas suffisant?}
+\subsection*{6 : Pourquoi gérer le traffic shaping seulement sur routeurentreprise produit de bon résultat, mais n'est toujours pas suffisant?}
 
-Le première raison est que le routeur entreprise ne peut gérer que le trafic propre à son sous-réseau et non le trafic de tous les clients connectés à routeur FAI. Le routeur FAI aura donc un traffic beaucoup plus important et la QoS sera donc plus utile sur cette partie du réseau.\\
+Le première raison est que le routeur entreprise ne peut gérer que le trafic propre à son sous-réseau et non le trafic de tous les clients connectés à routeur FAI. Le routeur FAI aura donc un trafic beaucoup plus important et la QoS sera donc plus utile sur cette partie du réseau.\\
 
-Mais le faire sur le routeur de l'entreprise permet déjà d'avoir une priorisation par rapport au traffic de l'entreprise et donc d'avoir un résultat qui peut-être satisfaisant si le routeur FAI subit très peu de congestion.
+Mais le faire sur le routeur de l'entreprise permet déjà d'avoir une priorisation par rapport au trafic de l'entreprise et donc d'avoir un résultat qui peut-être satisfaisant si le routeur FAI subit très peu de congestion.
 
-Dans le cas ou le routeur FAI est saturé alors la priorisation du côté de routeurentreprise ne sera pas suffisante car une autre sélection sera effectuée du côté du routeurFAI.
+Dans le cas ou le routeur FAI est saturé alors la priorisation du côté de routeurentreprise ne sera pas suffisante, car une autre sélection sera effectuée du côté du routeurFAI.
 
 \subsection*{7 : Quelle queue est recommandée pour garantir un traitement équitable des données? Est-ce que le Token Bucket répond à ces besoin ?}
 
@@ -548,10 +548,16 @@ if __name__ == '__main__':
 \end{lstlisting}
 
 \section{Conclusion}
+Le but de ce laboratoire était de découvrir la QoS au sein de réseau et mettre en place des solutions simples existantes.
+\\
 
-Ce laboratoire c'est déroulé sans problème particulier, toutes les parties à prouver ont été réalisées. Nous avons pu mettre en place et tester plusieurs solutions de qos au sein d'un réseau informatique. Comme le flag TOS et ou encore les tables hiérarchique HTB. Toutes les questions ont étées répondues et un code simple en python illustre le fonctionement d'un baquet.
+Ce laboratoire s'est déroulé sans problème particulier, toutes les parties à prouver ont été réalisées. Nous avons pu mettre en place et tester plusieurs solutions de QoS, tels que le flag TOS et/ou encore les tables hiérarchiques HTB. Toutes les questions ont été répondues et un code simple en python permettant d'illustrer le fonctionnement d'un baquet a été réalisé.
+\\
+
+Malgré nos faibles connaissances dans le domaine de la QoS, il a été très intéressant de découvrir un univers dont nous ne prenions pas conscience de son étendue.
 
 \printbibliography
 
 
 \end{document}
+
