@@ -105,7 +105,7 @@
  
 
 \section{Introduction}
- Le but de ce travail pratique est la découverte de techniques permettant de réaliser de la "Quality of Service" (QoS) sur un réseau simple. Ainsi que de tester ces dernières dans un environnement Netkit.
+Le but de ce travail pratique est la découverte de techniques permettant de réaliser de la "Quality of Service" (QoS) sur un réseau simple. Ainsi que de tester ces dernières dans un environnement Netkit.
 
 \subsection{Matériel et logiciel à disposition}
 \begin{itemize}
@@ -116,7 +116,7 @@
 \section{Méthodologie}
 
 \subsection{Cas concret}
-Grace au fichier lab.conf, nous pouvons déterminer la structure de réseau suivante:
+Grâce au fichier lab.conf, nous pouvons déterminer la structure de réseau suivante:
 \begin{figure}[h]
   \centering
   \includegraphics{./Structure.png}
@@ -124,7 +124,7 @@ Grace au fichier lab.conf, nous pouvons déterminer la structure de réseau suiv
   \label{fig:structure}
 \end{figure}
 
-Le démarrage du laboratoir NetKit "qos" nous permet d'accéder aux 4 périphériques précédement décrit:
+Le démarrage du laboratoire NetKit "qos" nous permet d'accéder aux 4 périphériques précédemment décrits:
 \begin{itemize}
 	\item PC
 	\item Routeur Entreprise
@@ -148,7 +148,7 @@ Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.
   \label{fig:token-bucket}
 \end{figure}
 
-Ce fichier contient deux commandes qui influencent le traffic shapping, soient:
+Ce fichier contient deux commandes qui influencent le trafic shapping, soient:
 \begin{itemize}
 \item \textit{tc qdist add dev eth0 root tbf rate 500kbit latency 80ms burst 1540}
 \item \textit{tc qdist add dev eth1 root tbf rate 5000kbit latency 80ms burst 15400}
@@ -162,7 +162,7 @@ Grace à la commande "tcqdisc list", nous obtenons:
   \label{fig:token-bucket}
 \end{figure}
 
-On peut y trouver deux paramètres, rate et latency, voici à quoi ils correspondent en comparaison avec le modèle du bacquet:
+On peut y trouver deux paramètres, rate et latency, voici à quoi ils correspondent en comparaison avec le modèle du baquet:
 \begin{itemize}
 \item rate -> débit standard
 \item latency -> taille du bacquet
@@ -184,7 +184,7 @@ L'étape suivante a été d'évaluer les performances:
    & Débit [Ko/s]\\
   \hline
   Débit montant & 49 \\
-  Débit Descendant & 580 \\
+  Débit descendant & 580 \\
   \hline
 \end{tabular}
 \\
@@ -205,12 +205,12 @@ ainsi que les pings:
 TODO EVENTUELLEMENT AJOUTER CAPTURES + 
 
 \subsubsection{Questions sur cette partie}
-\textbf{a) Est-ce que les performances, chaque sens pris séparémment, correspond à celle prévue ?}\\
+\textbf{a) Est-ce que les performances, chaque sens pris séparément, correspond à celle prévue ?}\\
 Oui, 
 \\
 
 \textbf{b) si vous faites des transferts dans les deux sens, qu'observez-vous au niveau des débits ?}\\
-Bous avons effectué un test en mesurant le débit dans les deux directions en même temps:\\
+Nous avons effectué un test en mesurant le débit dans les deux directions en même temps:\\
 \begin{tabular}{|l|c|}
   \hline
    & Débit [Ko/s]\\
@@ -221,11 +221,11 @@ Bous avons effectué un test en mesurant le débit dans les deux directions en m
 \end{tabular}
 \\
 
-On constate que les deux débits sont plus petits que ceux mesurés indépendemment, celà s'explique par le fait que chaque message reçu dans un sens nécessite une confirmation qui va prendre du débit dans le sens opposé.
+On constate que les deux débits sont plus petits que ceux mesurés indépendamment, cela s'explique par le fait que chaque message reçu dans un sens nécessite une confirmation qui va prendre du débit dans le sens opposé.
 \\
 
 \textbf{c) Qu'observez-vous si vous faites des ping simultanément à des transferts ?}\\
-Plus de traffic car TODO EXPLIQUER POURQUOI
+Plus de trafic car TODO EXPLIQUER POURQUOI
 
 \subsubsection{Partie spécifique au rapport}
 Grace au script, nous avons généré le graph de latence, une fois sans traffic:
@@ -247,7 +247,7 @@ Puis la seconde fois avec du traffic full-duplex afin de diminuer l'effet aléat
 \newpage
 
 Nous avons également simulé des flux udp et effectué un ping:\\
-TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE EN UDP
+TODO IL FUDRAIT QU'ON AIT UNE CAPTURE DE LA COMMANDE EN UDP
 
 \begin{figure}[h]
   \centering
@@ -259,7 +259,7 @@ TODO IL FUDRAIT QU'ON AI UNE CAPTURE DE LA COMMANDE EN UDP
 
 
 \subsection{Traffic Shaping Simple}
-Nous allons limiter le débit montant sur routeurentreprise en appliquant une queue TBF sur l'interface sortante grace à un très faible délai de stockage.
+Nous allons limiter le débit montant sur routeurentreprise en appliquant une queue TBF sur l'interface sortante grâce à un très faible délai de stockage.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/11-limite.png}
@@ -272,7 +272,7 @@ TODO Trouver image
 \\
 
 \textbf{Montrer dans quelle mesure le traffic d'information TCP est ralenti par cette limite et expliquer pourquoi}\\
-Le débit est plus petit. Lors de l'envoie de pacquets, beaucoup de ceux-ci vont déborder du bacquet, ce qui va nécessiter le réenvoie des pacquets jetté par le système. Ces pertes vont ralentir le système tout entier.
+Le débit est plus petit. Lors de l'envoie de paquets, beaucoup de ceux-ci vont déborder du baquet, ce qui va nécessiter le réenvoie des paquets jetés par le système. Ces pertes vont ralentir le système tout entier.
 
 Les statistiques de queue obtenues lors de notre test sont les suivantes:
 \begin{figure}[h]
@@ -288,7 +288,7 @@ Comme précisé dans la donnée, lorsqu'on crée deux flux TCP vers serveurinter
 
 Le bit TOS peut être marqué directement depuis les applications ou depuis le firewall. Pour cette partie nous l'avons fait avec le firewall.\\
 
-La commande pour indiqué au routeur de marquer les bits à destination du port 7002 avec le TOS est celle-ci :\\
+La commande pour indiqurt au routeur de marquer les bits à destination du port 7002 avec le TOS est celle-ci :\\
 
 iptables -I OUTPUT -t mangle -p tcp --dport 7002 -j TOS --set-tos Minimize-Delay\\
 
@@ -306,16 +306,16 @@ On peut ensuite voir que le trafic a bien été marqué sur la prise d'écran ci
 
 Il est également possible de faire de la qualité de service en faisant une hiérarchie de priorisation pour avoir une plus grande liberté et complexité. Aussi appelé "Hierarchical Token Buffer" ou HTB. \\
 
-Ensuite l'exercice consistait à implément un HTB comme celui-ci : \\
+Ensuite l'exercice consistait à implémenter un HTB comme celui-ci : \\
 
 \begin{itemize}
-	\item 3/4 du débitdébit pour les paquets à desination du port TCP 7001
+	\item 3/4 du débitdébit pour les paquets à destination du port TCP 7001
 	\item 1/4 composé de : 
 	\subitem 3/4 du débit restant pour tous le contenu autre que 7001 et 7002
 	\subitem 1/4 du débit restant pour les paquets à destination du port TCP 7002
 \end{itemize}
 
-Donc un arbre à 2 niveau qui représenté comme cela :
+Donc un arbre à 2 niveaux représenté comme cela :
 
 \begin{figure}[h]
 	\centering
@@ -325,9 +325,9 @@ Donc un arbre à 2 niveau qui représenté comme cela :
 \end{figure}
 \newpage
 
-Les instructions pour créer cette HTB était données dans le cours à la page 56 \cite{doc-labo}. \\
+Les instructions pour créer cette HTB étaient données dans le cours à la page 56 \cite{doc-labo}. \\
 
-Les testes peuvent être observer sur les prises d'écran ci-dessous : 
+Les tests peuvent être observés sur les prises d'écran ci-dessous : 
 
 \begin{figure}[h]
 	\centering
@@ -352,33 +352,33 @@ Les testes peuvent être observer sur les prises d'écran ci-dessous :
 S'il on fait le calcule, on peut remarquer que le débit est assez proche du résultat attendu. \\
 
 Débit total : 55 K/s\\
-Port 7001 : Théorique - 41.125 K/s, pratique 41 K/s\\
-Port 7002 : Théorique - 3.4 K/s, pratique 6 K/s\\
-Port quelconque : Théorique 10.25 K/s, pratique 10 K/s
+Port 7001 : théorique - 41.125 K/s, pratique 41 K/s\\
+Port 7002 : théorique - 3.4 K/s, pratique 6 K/s\\
+Port quelconque : théorique 10.25 K/s, pratique 10 K/s
 
 \subsubsection{WonderShaper}
 
 Le script a 3 buts principaux : \\
 
 \begin{itemize}
-	\item améliorer au maximum possible la latence afin que des protocoles comme SSH ou Telnet ne soit pas perturber par le reste du traffic.
+	\item améliorer au maximum possible la latence afin que des protocoles comme SSH ou Telnet ne soient pas perturbés par le reste du traffic.
 	\item garder un débit correct en HTTP tout en ayant un traffic fort en débit montant et descendant
 	\item Limiter l'impacte du débit montant sur le débit descendant et l'inverse y compris
 \end{itemize}
 
-Et le script contient un certain nombre de règle pour le routeur afin de créer des classes et des Stochastic Fair Queue pour faire de la priorisation de service pour certains ports.
+Et le script contient un certain nombre de règles pour le routeur afin de créer des classes et des Stochastic Fair Queue pour faire de la priorisation de service pour certains ports.
 
 \section{Questions de base}
 
 \subsection*{1 : Expliquer en quelques mots le principe de l'algorithme de régulation TCP}
 
-Certains routeur vont marquer les pacquets lorsqu'ils s'apprêtent à subir une congestion, ce système s'appelle l'ECN (Explicit Congestion Notification). Mais ce système mise sur le fait que les d'autres routeurs implément ce système. \cite{cours}\\
+Certains routeurs vont marquer les paquets lorsqu'ils s'apprêtent à subir une congestion, ce système s'appelle l'ECN (Explicit Congestion Notification). Mais ce système mise sur le fait que les d'autres routeurs implémentent ce système. \cite{cours}\\
 
-Les p	aquets marqués vont indiquer au client qu'il doit diminuer son débit.
+Les paquets marqués vont indiquer au client qu'il doit diminuer son débit.
 
 \subsection*{2 : Pourquoi un MTU plus faible peut améliorer la QoS?}
 
-Un MTU plus faible va baisser l'efficacité de la communication mais va améliorer le temps de réponse.
+Un MTU plus faible va baisser l'efficacité de la communication, mais va améliorer le temps de réponse.
 \begin{enumerate}
 \item Problème de partage des trames
 \item Guigge de phase très variable
@@ -398,15 +398,15 @@ L'opérateur peut alors faire 2 choses différentes selon sa politique envers se
 
 \subsection*{4 : Comment diminuer la vitesse du sens descendant en modifiant celle du sens montant?}
 
-Il y a deux possiblités. La première est de réduire la vitesse du débit montant de cette connexion, ce qui aura pour effet d'également de réduire la vitesse du sens descendant, car les paquêts metteront plus de temps à atteindre leur destination et leur reponse sera donc envboyer plus tard.\\
+Il y a deux possibilités. La première est de réduire la vitesse du débit montant de cette connexion, ce qui aura pour effet d'également de réduire la vitesse du sens descendant, car les paquets mettront plus de temps à atteindre leur destination et leur réponse sera donc envoyé plus tard.\\
 
-La deuxième solution  est de supprimer des paquets de confirmations. L'émetteur attendra alors jusqu'au timeout et va ré-émettre le paquet par la suite. La fenêtre passera également moins rapidement aux paquets suivant puisque certains paquets n'auront pas été confirmés.
+La deuxième solution est de supprimer des paquets de confirmations. L'émetteur attendra alors jusqu'au timeout et va réémettre le paquet par la suite. La fenêtre passera également moins rapidement aux paquets suivants puisque certains paquets n'auront pas été confirmés.
 
-\subsection*{5 : Le sens montant est saturé, comment assuer un bon débit descendant}
+\subsection*{5 : Le sens montant est saturé, comment assurer un bon débit descendant}
 
 Il serait possible de grouper les confirmations (ACK) comme le fait go back-n\cite{GoBackN} ou alors en faisant de la QoS et en priorisant le traffic montant et les confirmations.\\
 
-Si on priorise le traffic montant alors passera plus facilement outre la saturation et les confirmations du serveur seront en traffic descendant qui lui, n'est pas saturé.
+Si on priorise le traffic montant, alors celui-ci passera plus facilement outre la saturation et les confirmations du serveur seront en traffic descendant qui lui, n'est pas saturé.
 
 
 \subsection*{6 : Pourquoi gérer le traffic shaping seulement sur routeurentreprise produit de bon résultat mais n'est toujours pas suffisant?}
@@ -415,18 +415,18 @@ Le première raison est que le routeur entreprise ne peut gérer que le traffic 
 
 Mais le faire sur le routeur de l'entreprise permet déjà d'avoir une priorisation par rapport au traffic de l'entreprise et donc d'avoir un résultat qui peut-être satisfaisant si le routeur FAI ne subit très peu de congestion.
 
-\subsection*{7 : Quelle queue est recommendé pour garantir un traitement équitables des données? Est-ce que le Token Bucket répond à ses besoin ?}
+\subsection*{7 : Quelle queue est recommandée pour garantir un traitement équitable des données? Est-ce que le Token Bucket répond à ses besoin ?}
 
-Une queue de type SFQ \cite{SFQ} est recommendé pour garantir un traitement plus équitables des données.\\
+Une queue de type SFQ \cite{SFQ} est recommendée pour garantir un traitement plus équitable des données.\\
 
-Un baquet ne serait pas adapté car ce système ce contente de supprimer tous les paquets lorsqu'il est en surcharge \cite{Bucket}
+Un baquet ne serait pas adapté, car ce système se contente de supprimer tous les paquets lorsqu'il est en surcharge \cite{Bucket}
 
 
 \section{Questions rapport}
 
-\subsection*{1 : Qu'est ce que le routage de la patate chaude et à quoi sert-il dans un réseau surchargé?}
+\subsection*{1 : Qu'est-ce que le routage de la patate chaude et à quoi sert-il dans un réseau surchargé?}
 
-C'est un système de routage où les paquets vont être envoyés sans être stocker en mémoire et sans vérifier par quel chemin ils seront le mieux acheminer. \cite{HotPotato}
+C'est un système de routage où les paquets vont être envoyés sans être stocké en mémoire et sans vérifier par quel chemin ils seront le mieux acheminer. \cite{HotPotato}
 
 \subsection*{2 : Avec quel outil peut-on évaluer le nombre de paquets reçus en désordre?}
 
@@ -435,19 +435,19 @@ Il est possible d'évaluer le nombre de paquets reçu en désordre avec Wireshar
 
 \subsection*{3 : Proposer une répartition de débit entre classes plus logique dans un réseau réel}
 
-Si on priorise le TCP, les paquets devant crucialement être acheminer seront priorisé et les paquets UDP vont soit être perdu ou en retard. \\
+Si on priorise le TCP, les paquets devant crucialement être acheminés seront priorisés et les paquets UDP vont soit être perdus ou en retard. \\
 
-Mais vu que les protocoles utilisant UTP ne requiert pas un taux de réception de 100\%. 
+Mais vu que les protocoles utilisant UTP ne requièrent pas un taux de réception de 100\%. 
 
 \subsection*{4 : Conception d'un baquet}
 
 Tous les snippets de code sont également présents dans l'annexe 'TokenBucket.py'
 
-\subsubsection{Classe rerpésentant un baquet}
+\subsubsection{Classe représentant un baquet}
 
 \paragraph{enqueue}
 
-Le baquet utilise une queue où l'on va définir une taille maximum de message en attente d'être envoyé. Lorsqu'on essaye d'ajouter un message à envoyer, le baquet va regarder le nombre de message en attente et si ce nombre est égal au nombre de message maximum, le message va être jeté.\\
+Le baquet utilise une queue où l'on va définir une taille maximum de message en attente d'être envoyé. Lorsqu'on essaye d'ajouter un message à envoyer, le baquet va regarder le nombre de messages en attente et si ce nombre est égal au nombre de messages maximum, le message va être jeté.\\
 
 Autrement le message va être ajouté dans la queue en attendant d'être envoyé qu'il soit envoyé.
 
@@ -457,7 +457,7 @@ La fonction de dequeue va essayer de pop le futur message à envoyer et lorsque 
 
 \paragraph{printSize}
 
-La fonction printSize n'a pas de réel utilité si ce n'est que d'afficher des informations sur le l'état du baquet (message en attente / taille maximale) dans le code d'utilisation du baquet
+La fonction printSize n'a pas de réelle utilité si ce n'est d'afficher des informations sur le l'état du baquet (message en attente / taille maximale) dans le code d'utilisation du baquet
 
 \paragraph{code}
 
