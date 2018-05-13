@@ -41,7 +41,7 @@
 \usepackage{colortbl}
 
 \title{Rapport Labo 3}
-\author{Lucas \bsc{Bulloni} \&Bastien \bsc{Wermeille}}
+\author{\bsc{Bulloni} Lucas \& \bsc{Wermeille} Bastien}
 %\date{10 Novembre 2017}
 
 % En-têtes et pieds de pages
@@ -49,7 +49,7 @@
  
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{Lucas \bsc{Bulloni} \&Bastien \bsc{Wermeille}}
+\rhead{\bsc{Bulloni} Lucas \& \bsc{Wermeille} Bastien}
 \lhead{Réseau et application.bib}
 \chead{Rapport Labo 2}
 \cfoot{\thepage}
@@ -97,6 +97,9 @@
 
 \usepackage[backend=biber]{biblatex}
 \addbibresource{biblio.bib}
+
+%\bibliographystyle{plain}
+\bibliography{biblio}
 
 % Début du document
 \begin{document}
@@ -147,13 +150,13 @@ Une fois le laboratoire démarré, nous pouvons consulter le fichier routeurfai.
   \label{fig:token-bucket}
 \end{figure}
 
-Ce fichier contient deux commandes qui influencent le trafic shapping, soient:
+Ce fichier contient deux commandes qui mettent en place un tocken bucket sur chaque interface:
 \begin{itemize}
 \item \textit{tc qdist add dev eth0 root tbf rate 500kbit latency 80ms burst 1540}
 \item \textit{tc qdist add dev eth1 root tbf rate 5000kbit latency 80ms burst 15400}
 \end{itemize}
 
-Grace à la commande "tcqdisc list", nous obtenons: 
+Grace à la commande "tcqdisc list", nous pouvons constater que ces deux commandes ont bien fonctionnées:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/3-TokenBucket.png}
@@ -161,10 +164,10 @@ Grace à la commande "tcqdisc list", nous obtenons:
   \label{fig:token-bucket}
 \end{figure}
 
-On peut y trouver deux paramètres, rate et latency, voici à quoi ils correspondent en comparaison avec le modèle du baquet:
+Le tocken bucket prend notemment deux paramètres principaux, rate et latency, voici à quoi ils correspondent en comparaison avec le modèle du baquet:
 \begin{itemize}
-\item rate -> débit standard
-\item latency -> taille du bacquet
+\item rate -> débit standard ou constant, paramètre de la vitesse
+\item latency -> taille du baquet, nombre d’octets qui peu être mis en file d’attente en attendant la disponibilité de jetons
 \end{itemize}
 
 La configuration actuelle nous permet d'accéder à serveurinternet:
@@ -248,7 +251,7 @@ On constate que les deux débits sont plus petits que ceux mesurés indépendamm
 \\
 
 \textbf{c) Qu'observez-vous si vous faites des ping simultanément à des transferts ?}\\
-Plus de trafic car TODO EXPLIQUER POURQUOI
+La vitesse des transferts diminue car les pings prennent du débit au transfert. Les pings ont un délais plus long à cause de l'augmentation de trafic.
 
 \subsubsection{Partie spécifique au rapport}
 Grace au script, nous avons généré le graph de latence, une fois sans traffic:
@@ -260,7 +263,7 @@ Grace au script, nous avons généré le graph de latence, une fois sans traffic
 \end{figure}
 \newpage
 
-Puis la seconde fois avec du traffic full-duplex afin de diminuer l'effet aléatoire losrqu'il n'y a pas de traffic et que la variance varie beaucoup en très peu de temps:
+Puis la seconde fois avec du traffic full-duplex afin de négliger la latence du réseau losrqu'il n'y a pas de traffic et que la variance varie beaucoup en très peu de temps:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/6-plot-fullduplex.png}
@@ -269,8 +272,7 @@ Puis la seconde fois avec du traffic full-duplex afin de diminuer l'effet aléat
 \end{figure}
 \newpage
 
-Nous avons également simulé des flux udp et effectué un ping:\\
-TODO IL FUDRAIT QU'ON AIT UNE CAPTURE DE LA COMMANDE EN UDP
+Nous avons également simulé des flux udp et effectué un ping visible ci-dessous:\\
 
 \begin{figure}[h]
   \centering
@@ -279,7 +281,6 @@ TODO IL FUDRAIT QU'ON AIT UNE CAPTURE DE LA COMMANDE EN UDP
   \label{fig:token-bucket}
 \end{figure}
 \newpage
-
 
 \subsection{Traffic Shaping Simple}
 Nous allons limiter le débit montant sur routeurentreprise en appliquant une queue TBF sur l'interface sortante grâce à un très faible délai de stockage.
@@ -548,7 +549,7 @@ if __name__ == '__main__':
 
 \section{Conclusion}
 
-Ce laboratoire c'est déroulé sans problème, toutes les parties à prouver ont été réalisé et prouvé. Nous avons pu mettre en place et tester plusieurs solutions de qualité de serveur au sein d'un réseau informatique. Comme le flag TOS et ou encore les tables hiérarchique HTB. Toutes les questions ont pu être répondu et un code simple en python illustre le fonction d'un baquet.
+Ce laboratoire c'est déroulé sans problème particulier, toutes les parties à prouver ont été réalisées. Nous avons pu mettre en place et tester plusieurs solutions de qos au sein d'un réseau informatique. Comme le flag TOS et ou encore les tables hiérarchique HTB. Toutes les questions ont étées répondues et un code simple en python illustre le fonctionement d'un baquet.
 
 \printbibliography
 
