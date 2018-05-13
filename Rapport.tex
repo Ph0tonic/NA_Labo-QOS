@@ -189,6 +189,13 @@ L'étape suivante a été d'évaluer les performances:
 \end{tabular}
 \\
 
+\begin{figure}[h]
+	\centering
+	\includegraphics{./captures/debit-descendant.png}
+	\caption{Débit montant et descendant}
+	\label{fig:token-bucket}
+\end{figure}
+
 ainsi que les pings:
 
 \begin{tabular}{|l|c|}
@@ -200,13 +207,30 @@ ainsi que les pings:
   avec débit montant & 100 \\
   \hline
 \end{tabular}
-\\
 
-TODO EVENTUELLEMENT AJOUTER CAPTURES + 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{./captures/pingdescendant.png}
+	\caption{Ping descendant}
+	\label{fig:token-bucket}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{./captures/pingmontant.png}
+	\caption{Ping montant}
+	\label{fig:token-bucket}
+\end{figure}
+
+
+
+
 
 \subsubsection{Questions sur cette partie}
 \textbf{a) Est-ce que les performances, chaque sens pris séparément, correspond à celle prévue ?}\\
-Oui, 
+Oui, ce n'est pas exactement les mêmes valeures mais c'est très proches du résultat attendu.
 \\
 
 \textbf{b) si vous faites des transferts dans les deux sens, qu'observez-vous au niveau des débits ?}\\
@@ -268,7 +292,6 @@ Nous allons limiter le débit montant sur routeurentreprise en appliquant une qu
 \end{figure}
 
 En mesurant les délais, on a pu tester et montrer que les délais mesurés sont meilleurs en présence de traffic TCP montant, avec cette limitation:
-TODO Trouver image
 \\
 
 \textbf{Montrer dans quelle mesure le traffic d'information TCP est ralenti par cette limite et expliquer pourquoi}\\
@@ -523,6 +546,7 @@ if __name__ == '__main__':
 \end{lstlisting}
 
 \section{Conclusion}
-TODO
+
+Ce laboratoire c'est déroulé sans problème, toutes les parties à prouver ont été prouvé. Nous avons pu mettre en place et tester plusieurs solutions de qualité de serveur au sein d'un réseau informatique. Comme le flag TOS et ou encore les tables hiérarchique HTB. Toutes les questions ont pu être répondu et un code simple en python illustre le fonction d'un baquet.
 
 \end{document}
