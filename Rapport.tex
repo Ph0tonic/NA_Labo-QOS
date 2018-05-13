@@ -429,20 +429,20 @@ La deuxième solution est de supprimer des paquets de confirmations. L'émetteur
 
 Il serait possible de grouper les confirmations (ACK) comme le fait go back-n\cite{GoBackN} ou alors, en faisant de la QoS et en priorisant les messages de confirmation (ACK).\\
 
-Si on priorise ces messages, alors ceux-ci passeront plus facilement outre la saturation et le débit descendant souffrira moins de la saturatuion du sens montant.
+Si on priorise ces messages, alors ceux-ci passeront plus facilement outre la saturation et le débit descendant souffrira moins de la saturation du sens montant.
 
 
 \subsection*{6 : Pourquoi gérer le traffic shaping seulement sur routeurentreprise produit de bon résultat, mais n'est toujours pas suffisant?}
 
-Le première raison est que le routeur entreprise ne peut gérer que le trafic propre à son sous-réseau et non le trafic de tous les clients connectés à routeur FAI. Le routeur FAI aura donc un trafic beaucoup plus important et la QoS sera donc plus utile sur cette partie du réseau.\\
+La première raison est que routeurentreprise ne peut gérer que le trafic propre à son sous-réseau et non le trafic de tous les clients connectés au routeur du FAI. Le routeur FAI aura donc un trafic beaucoup plus important et la QoS sera donc plus utile sur cette partie du réseau.\\
 
 Mais le faire sur le routeur de l'entreprise permet déjà d'avoir une priorisation par rapport au trafic de l'entreprise et donc d'avoir un résultat qui peut-être satisfaisant si le routeur FAI subit très peu de congestion.
 
 Dans le cas ou le routeur FAI est saturé alors la priorisation du côté de routeurentreprise ne sera pas suffisante, car une autre sélection sera effectuée du côté du routeurFAI.
 
-\subsection*{7 : Quelle queue est recommandée pour garantir un traitement équitable des données? Est-ce que le Token Bucket répond à ces besoin ?}
+\subsection*{7 : Quelle queue est recommandée pour garantir un traitement équitable des données? Est-ce que le Token Bucket répond à ces besoins ?}
 
-Une queue de type SFQ \cite{SFQ} est recommendée pour garantir un traitement plus équitable des données.\\
+Une queue de type SFQ \cite{SFQ} est recommandée pour garantir un traitement plus équitable des données.\\
 
 Un baquet ne serait pas adapté, car ce système se contente de supprimer les paquets qu'il reçoit lorsqu'il est en surcharge \cite{Bucket}
 
