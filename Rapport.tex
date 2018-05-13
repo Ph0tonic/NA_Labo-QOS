@@ -254,20 +254,20 @@ On constate que les deux débits sont plus petits que ceux mesurés indépendamm
 La vitesse des transferts diminue, car les pings prennent du débit au transfert. Les pings ont un délai plus long à cause de l'augmentation de trafic.
 
 \subsubsection{Partie spécifique au rapport}
-Grâce au script, nous avons généré le graph de latence, une fois sans traffic:
+Grâce au script, nous avons généré le graph de latence, une fois sans trafic:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/6-plot.png}
-  \caption{Graph avec traffic à vide}
+  \caption{Graph avec trafic à vide}
   \label{fig:token-bucket}
 \end{figure}
 \newpage
 
-Puis la seconde fois avec du traffic full-duplex afin de négliger la latence du réseau losrqu'il n'y a pas de traffic et que la variance varie beaucoup en très peu de temps:
+Puis la seconde fois avec du trafic full-duplex afin de négliger la latence du réseau losrqu'il n'y a pas de trafic et que la variance varie beaucoup en très peu de temps:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/6-plot-fullduplex.png}
-  \caption{Graph avec traffic full-duplex}
+  \caption{Graph avec trafic full-duplex}
   \label{fig:token-bucket}
 \end{figure}
 \newpage
@@ -277,7 +277,7 @@ Nous avons également simulé des flux udp et effectué un ping visible ci-desso
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/10-udp.png}
-  \caption{ping durant traffic upd}
+  \caption{ping durant trafic upd}
   \label{fig:token-bucket}
 \end{figure}
 \newpage
@@ -287,21 +287,21 @@ Nous allons limiter le débit montant sur routeurentreprise en appliquant une qu
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/11-limite.png}
-  \caption{Limitation traffic montant routeurentreprise}
+  \caption{Limitation trafic montant routeurentreprise}
   \label{fig:token-bucket}
 \end{figure}
 
-En mesurant les délais, on a pu tester et montrer que les délais mesurés sont meilleurs en présence de traffic TCP montant, avec cette limitation:
+En mesurant les délais, on a pu tester et montrer que les délais mesurés sont meilleurs en présence de trafic TCP montant, avec cette limitation:
 \\
 
-\textbf{Montrer dans quelle mesure le traffic d'information TCP est ralenti par cette limite et expliquer pourquoi}\\
+\textbf{Montrer dans quelle mesure le trafic d'information TCP est ralenti par cette limite et expliquer pourquoi}\\
 Le débit est plus petit. Lors de l'envoi de paquets, beaucoup de ceux-ci vont déborder du baquet, ce qui va nécessiter le réenvoie des paquets jetés par le système. Ces pertes vont ralentir le système tout entier.
 
 Les statistiques de queue obtenues lors de notre test sont les suivantes:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./captures/13-stat-queue.png}
-  \caption{Limitation traffic montant routeurentreprise}
+  \caption{Limitation trafic montant routeurentreprise}
   \label{fig:token-bucket}
 \end{figure}
 
@@ -384,8 +384,8 @@ Port quelconque : théorique 10.25 K/s, pratique 10 K/s
 Le script a 3 buts principaux : \\
 
 \begin{itemize}
-	\item améliorer au maximum possible la latence afin que des protocoles comme SSH ou Telnet ne soient pas perturbés par le reste du traffic.
-	\item garder un débit correct en HTTP tout en ayant un traffic fort en débit montant et descendant
+	\item améliorer au maximum possible la latence afin que des protocoles comme SSH ou Telnet ne soient pas perturbés par le reste du trafic.
+	\item garder un débit correct en HTTP tout en ayant un trafic fort en débit montant et descendant
 	\item Limiter l'impacte du débit montant sur le débit descendant et l'inverse y compris
 \end{itemize}
 
